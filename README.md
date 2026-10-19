@@ -1,23 +1,10 @@
 <div align="center">
 
-```
-         __        __             ___
-   _____/ /_____ _/ /___  _______/ (_)___  ___
-  / ___/ __/ __ `/ __/ / / / ___/ / / __ \/ _ \
- (__  ) /_/ /_/ / /_/ /_/ (__  ) / / / / /  __/
-/____/\__/\__,_/\__/\__,_/____/_/_/_/ /_/\___/
-                    __             __
-  _________  ____  / /__________  / /
- / ___/ __ \/ __ \/ __/ ___/ __ \/ /
-/ /__/ /_/ / / / / /_/ /  / /_/ / /
-\___/\____/_/ /_/\__/_/   \____/_/
-```
+![statusline-control banner](https://capsule-render.vercel.app/api?type=waving&color=0:D97757,100:1a1a2e&height=220&section=header&text=statusline-control&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=statusline%20rica%20para%20Claude%20Code&descSize=18&descAlignY=60&animation=fadeIn)
 
-### `statusline-control`
+**Tudo que importa de relance — diretório, branch, modelo, contexto, rate limits com contagem regressiva e PR aberto, em uma única linha colorida.**
 
-**Uma statusline rica, colorida e em uma única linha para o [Claude Code](https://docs.claude.com/en/docs/claude-code).**
-
-Tudo que importa de relance — diretório, branch, modelo, contexto, rate limits com contagem regressiva e PR aberto — sem nunca sair da sua linha.
+Para o [Claude Code](https://docs.claude.com/en/docs/claude-code).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Shell](https://img.shields.io/badge/shell-bash-121011?logo=gnubash&logoColor=white)](./statusline-command.sh)
@@ -234,5 +221,7 @@ Verifique se `~/.claude/` existe e é gravável. O write é fail-open — se fal
 **Licença MIT · Faça o que quiser · [Issues](https://github.com/lfsp-git/statusline-control/issues) · [PRs](https://github.com/lfsp-git/statusline-control/pulls) são bem-vindos**
 
 <sub>Feito com ☕ e tempo demais olhando para a statusline.</sub>
+
+![footer](https://capsule-render.vercel.app/api?type=waving&color=0:1a1a2e,100:D97757&height=120&section=footer)
 
 </div>
