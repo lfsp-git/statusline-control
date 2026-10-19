@@ -1,6 +1,6 @@
 <div align="center">
 
-![statusline-control banner](https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0f,50:4a0000,100:dc143c&height=220&section=header&text=statusline-control&fontSize=62&fontColor=ff2040&fontAlignY=48&animation=fadeIn)
+![statusline-control](./assets/banner.png)
 
 **Tudo que importa de relance — diretório, branch, modelo, contexto, rate limits com contagem regressiva e PR aberto, em uma única linha colorida.**
 
