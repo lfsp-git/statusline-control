@@ -1,6 +1,6 @@
 <div align="center">
 
-![statusline-control](./assets/banner.png)
+![statusline-control](./assets/banner.gif)
 
 **Tudo que importa de relance — diretório, branch, modelo, contexto, rate limits com contagem regressiva e PR aberto, em uma única linha colorida.**
 
