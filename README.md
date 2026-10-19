@@ -1,6 +1,6 @@
 <div align="center">
 
-![statusline-control banner](https://capsule-render.vercel.app/api?type=waving&color=0:D97757,100:1a1a2e&height=220&section=header&text=statusline-control&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=statusline%20rica%20para%20Claude%20Code&descSize=18&descAlignY=60&animation=fadeIn)
+![statusline-control banner](https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0f,50:4a0000,100:dc143c&height=220&section=header&text=statusline-control&fontSize=62&fontColor=ff2040&fontAlignY=48&animation=fadeIn)
 
 **Tudo que importa de relance — diretório, branch, modelo, contexto, rate limits com contagem regressiva e PR aberto, em uma única linha colorida.**
 
@@ -222,6 +222,6 @@ Verifique se `~/.claude/` existe e é gravável. O write é fail-open — se fal
 
 <sub>Feito com ☕ e tempo demais olhando para a statusline.</sub>
 
-![footer](https://capsule-render.vercel.app/api?type=waving&color=0:1a1a2e,100:D97757&height=120&section=footer)
+![footer](https://capsule-render.vercel.app/api?type=waving&color=0:dc143c,50:4a0000,100:0a0a0f&height=120&section=footer)
 
 </div>
