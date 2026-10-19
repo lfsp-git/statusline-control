@@ -25,7 +25,9 @@ weekly_resets_at=$(printf '%s' "$input" | jq -r '.rate_limits.seven_day.resets_a
 # as every other optional field here.
 _countdown() {
   local resets_at="$1" now remaining d h m
-  [ -z "$resets_at" ] && return
+  # Hard numeric check before arithmetic: $(( )) would expand a $(cmd) inside
+  # the value, so refuse anything that is not a plain integer up front.
+  [[ "$resets_at" =~ ^[0-9]+$ ]] || return
   now=$(date +%s)
   remaining=$((resets_at - now))
   [ "$remaining" -le 0 ] && { printf 'now'; return; }
@@ -96,7 +98,8 @@ if [ -n "$used_pct" ]; then
   else ctx_color="$GREEN"; fi
   ctx_size=$(printf '%s' "$input" | jq -r '.context_window.context_window_size // empty')
   ctx_label="${pct_int}%"
-  if [ -n "$ctx_size" ]; then
+  # Same reason as _countdown: only enter the arithmetic branch for a plain integer.
+  if [[ "$ctx_size" =~ ^[0-9]+$ ]]; then
     if [ "$ctx_size" -ge 1000000 ]; then ctx_lim="$((ctx_size / 1000000))M"
     else ctx_lim="$((ctx_size / 1000))k"; fi
     ctx_label="${pct_int}%/${ctx_lim}"
