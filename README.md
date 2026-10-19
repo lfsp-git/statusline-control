@@ -2,9 +2,11 @@
 
 ![statusline-control](./assets/banner.gif)
 
-**Tudo que importa de relance — diretório, branch, modelo, contexto, rate limits com contagem regressiva e PR aberto, em uma única linha colorida.**
+**English** · [Português](./README.pt-BR.md)
 
-Para o [Claude Code](https://docs.claude.com/en/docs/claude-code).
+**Everything you need at a glance — directory, branch, model, context, rate limits with countdown, and open PR — all on a single colored line.**
+
+For [Claude Code](https://docs.claude.com/en/docs/claude-code).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Shell](https://img.shields.io/badge/shell-bash-121011?logo=gnubash&logoColor=white)](./statusline-command.sh)
@@ -21,39 +23,39 @@ Para o [Claude Code](https://docs.claude.com/en/docs/claude-code).
 📁 my-project │ 🌿 main* │ 🤖 Opus 4.7 │ 📊 42%/200k │ ⏱ 3h 14m (28%) │ 📅 2d 5h (61%) │ 🔀 PR #142
 ```
 
-As cores dos % mudam sozinhas: **verde** < 60% · **amarelo** ≥ 60% · **vermelho** ≥ 85%. Se um segmento não faz sentido naquele momento (sem branch, sem PR, sem vim mode), ele simplesmente some.
+Percentage colors adapt automatically: **green** < 60% · **yellow** ≥ 60% · **red** ≥ 85%. A segment that doesn't apply right now (no branch, no PR, no vim mode) simply disappears.
 
 ---
 
-## O que aparece
+## What it shows
 
-| | Segmento | O que mostra |
+| | Segment | What it displays |
 |:-:|---|---|
-| 📁 | **dir** | Nome do diretório atual |
-| 🌿 | **branch** | Branch git — com `*` quando há mudanças não commitadas |
-| 🤖 | **model** | Modelo em uso (Opus / Sonnet / Haiku / Fable…) |
-| 📊 | **context** | % do contexto usado + tamanho da janela, colorido por faixa |
-| ⏱ | **5h window** | Rate limit de 5h: contagem regressiva até o reset + % usado |
-| 📅 | **weekly** | Rate limit semanal: contagem regressiva até o reset + % usado |
-| 🔀 | **PR / MR** | Número do PR (GitHub) ou MR (GitLab) associado |
-|  | **style** | Output style, só quando diferente de `default` |
-|  | **vim** | Modo atual, quando vim mode está ligado |
+| 📁 | **dir** | Current directory name |
+| 🌿 | **branch** | Git branch — with `*` when there are uncommitted changes |
+| 🤖 | **model** | Model in use (Opus / Sonnet / Haiku / Fable…) |
+| 📊 | **context** | % of context used + window size, colored by threshold |
+| ⏱ | **5h window** | 5-hour rate limit: countdown to reset + % used |
+| 📅 | **weekly** | Weekly rate limit: countdown to reset + % used |
+| 🔀 | **PR / MR** | Associated PR (GitHub) or MR (GitLab) number |
+|  | **style** | Output style, only when different from `default` |
+|  | **vim** | Current mode, when vim mode is on |
 
 ---
 
 ## ✨ Features
 
-- **Zero dependências pesadas** — bash + `jq` + `tput`. Nada mais.
-- **Fail-open por desenho** — um campo quebrado nunca derruba a statusline inteira.
-- **Snapshot de rate limits em disco** — a cada render grava `~/.claude/rate_limits.json`, para que a própria sessão possa ler e se auto-regular.
-- **Cores adaptativas** — contexto e rate limits viram amarelo em 60% e vermelho em 85% sem configuração.
-- **Hackeável** — um único arquivo de ~160 linhas, feito pra editar.
+- **Zero heavy dependencies** — bash + `jq` + `tput`. Nothing else.
+- **Fail-open by design** — a broken field never takes down the entire statusline.
+- **Rate limits snapshot on disk** — every render writes `~/.claude/rate_limits.json` so a running session can read it and pace itself.
+- **Adaptive colors** — context and rate limits turn yellow at 60% and red at 85% with no setup.
+- **Hackable** — a single ~160-line file, made to be edited.
 
 ---
 
-## Instalação
+## Installation
 
-### 1. Instale o `jq` (se ainda não tem)
+### 1. Install `jq` (if you don't already have it)
 
 ```bash
 # Debian / Ubuntu / WSL
@@ -66,16 +68,16 @@ brew install jq
 sudo pacman -S jq
 ```
 
-### 2. Clone o repo
+### 2. Clone the repo
 
 ```bash
 git clone https://github.com/lfsp-git/statusline-control.git ~/.claude/statusline-control
 chmod +x ~/.claude/statusline-control/statusline-command.sh
 ```
 
-### 3. Aponte o Claude Code para o script
+### 3. Point Claude Code to the script
 
-Em `~/.claude/settings.json`:
+In `~/.claude/settings.json`:
 
 ```json
 {
@@ -86,76 +88,76 @@ Em `~/.claude/settings.json`:
 }
 ```
 
-### 4. Recarregue
+### 4. Reload
 
-Rode `/statusline` dentro do Claude Code, ou reinicie a sessão.
+Run `/statusline` inside Claude Code, or restart the session.
 
-> 💡 **Dica** — se `~` não expandir no seu setup, troque por caminho absoluto (ex: `/home/seu-user/.claude/statusline-control/statusline-command.sh`).
+> 💡 **Tip** — if `~` doesn't expand in your setup, swap it for an absolute path (e.g. `/home/your-user/.claude/statusline-control/statusline-command.sh`).
 
 ---
 
-## Customização
+## Customization
 
-O script é um único arquivo bash pensado para ser hackeado. Os pontos mais comuns:
+The script is a single bash file made to be hacked. Most common edits:
 
 <table>
 <tr>
 <td width="33%">
 
-**🎨 Mudar as cores**
+**🎨 Change the colors**
 
-Edite as linhas de `tput setaf <n>` no topo. Números: `0–7` básico, `8–15` bright. Ou cole códigos ANSI direto.
-
-</td>
-<td width="33%">
-
-**➖ Remover um segmento**
-
-Cada segmento é um `if ... segments+=(...)`. Comente o bloco inteiro — o resto se ajusta sozinho.
+Edit the `tput setaf <n>` lines at the top. Numbers: `0–7` basic, `8–15` bright. Or paste raw ANSI codes directly.
 
 </td>
 <td width="33%">
 
-**😀 Trocar os emojis**
+**➖ Remove a segment**
 
-Edite as strings dentro de cada `segments+=`. Ex: `📁` → `` para o diretório.
+Each segment is an `if ... segments+=(...)` block. Comment the whole block — the rest adjusts itself.
+
+</td>
+<td width="33%">
+
+**😀 Change the emojis**
+
+Edit the strings inside each `segments+=`. E.g. `📁` → `` for the directory.
 
 </td>
 </tr>
 <tr>
 <td>
 
-**🎯 Mudar os thresholds**
+**🎯 Change the thresholds**
 
-Procure por `-ge 85` e `-ge 60` — são os cortes para vermelho e amarelo em contexto e rate limits.
-
-</td>
-<td>
-
-**│ Trocar o separador**
-
-Edite `out="$out ${GRAY}│${RESET} $s"`. Favoritos: `•`, `|`, `·`, `»`.
+Search for `-ge 85` and `-ge 60` — those are the red and yellow cutoffs for context and rate limits.
 
 </td>
 <td>
 
-**➕ Adicionar segmento**
+**│ Change the separator**
 
-`jq -r '.novo.campo'` do stdin → cor condicional → `segments+=("${COR}... ${RESET}")`.
+Edit `out="$out ${GRAY}│${RESET} $s"`. Favorites: `•`, `|`, `·`, `»`.
+
+</td>
+<td>
+
+**➕ Add a segment**
+
+`jq -r '.new.field'` from stdin → conditional color → `segments+=("${COLOR}... ${RESET}")`.
 
 </td>
 </tr>
 </table>
 
-O schema do JSON que o Claude Code pipeia está [na documentação oficial](https://docs.claude.com/en/docs/claude-code/statusline).
+The JSON schema Claude Code pipes in is in the [official docs](https://docs.claude.com/en/docs/claude-code/statusline).
 
 ---
 
-## 🔎 Bônus: por que gravar os rate limits em disco?
+## 🔎 Bonus: why dump rate limits to disk?
 
-O harness do Claude Code pipeia os campos de rate limit para a statusline a cada render, mas **uma sessão rodando dentro do Claude Code não consegue ler esses campos de dentro de uma tool call** — eles só aparecem no display.
+The Claude Code harness pipes rate-limit fields to the statusline on every render, but **a session running inside Claude Code cannot read those fields from within a tool call** — they only surface on the display.
 
-A cada render, o script também grava os rate limits em `~/.claude/rate_limits.json`:
+On every render the script also writes the rate limits to `~/.claude/rate_limits.json`:
 
 ```json
 {
@@ -167,60 +169,60 @@ A cada render, o script também grava os rate limits em `~/.claude/rate_limits.j
 }
 ```
 
-Com isso, uma sessão pode se auto-regular com um simples `cat ~/.claude/rate_limits.json` em vez de descobrir o limite batendo num 429 no meio de um round. Se não quiser esse comportamento, apague o bloco entre `--- persist the rate-limit window ---` no script.
+With that, a session can pace itself with a plain `cat ~/.claude/rate_limits.json` instead of discovering the limit by hitting a 429 mid-round. If you don't want this behavior, delete the block between the `--- persist the rate-limit window ---` comments in the script.
 
 ---
 
-## Requisitos
+## Requirements
 
-| Ferramenta | Para quê | Obrigatório? |
+| Tool | For | Required? |
 |---|---|:-:|
-| `bash` | O script em si | ✅ |
-| [`jq`](https://jqlang.github.io/jq/) | Parsear o JSON do stdin | ✅ |
-| `tput` | Cores (vem com `ncurses`) | ✅ |
-| `git` | Segmento de branch | opcional |
+| `bash` | The script itself | ✅ |
+| [`jq`](https://jqlang.github.io/jq/) | Parse the JSON from stdin | ✅ |
+| `tput` | Colors (ships with `ncurses`) | ✅ |
+| `git` | Branch segment | optional |
 
 ---
 
 ## Troubleshooting
 
 <details>
-<summary><b>Statusline em branco</b></summary>
+<summary><b>Blank statusline</b></summary>
 
-Provavelmente `jq` não está instalado. Confirme com `jq --version`. Se der "command not found", volte para a seção de instalação.
+`jq` is probably not installed. Check with `jq --version`. If it says "command not found", go back to the installation section.
 </details>
 
 <details>
-<summary><b>Sem cores</b></summary>
+<summary><b>No colors</b></summary>
 
-Seu terminal pode não suportar 256 cores, ou `TERM` está mal configurado. Teste com `tput colors` — deve retornar `256` ou mais. Se retornar `8`, use só os códigos de cor básicos (`0–7`).
+Your terminal may not support 256 colors, or `TERM` is misconfigured. Test with `tput colors` — it should return `256` or more. If it returns `8`, use only the basic color codes (`0–7`).
 </details>
 
 <details>
-<summary><b>Branch não aparece</b></summary>
+<summary><b>Branch doesn't show up</b></summary>
 
-O script usa `--no-optional-locks` para não brigar com um `git` já em execução. Em repos muito grandes, o segmento pode ficar vazio em alguns ciclos — é fail-open por desenho. Também some fora de um repo git, naturalmente.
+The script uses `--no-optional-locks` so it doesn't fight a running `git`. In very large repos the segment may stay empty on some cycles — that's fail-open by design. It also naturally disappears outside a git repo.
 </details>
 
 <details>
-<summary><b>Rate limits não aparecem</b></summary>
+<summary><b>Rate limits don't show</b></summary>
 
-Você provavelmente ainda não bateu nos limites na sessão atual. O Claude Code só manda esses campos depois do primeiro uso real da janela.
+You probably haven't hit the limits in the current session yet. Claude Code only sends those fields after the first real use of the window.
 </details>
 
 <details>
-<summary><b>O arquivo <code>rate_limits.json</code> não está sendo gerado</b></summary>
+<summary><b><code>rate_limits.json</code> isn't being written</b></summary>
 
-Verifique se `~/.claude/` existe e é gravável. O write é fail-open — se falhar, a statusline continua renderizando normalmente, sem erro visível.
+Make sure `~/.claude/` exists and is writable. The write is fail-open — if it fails, the statusline keeps rendering normally with no visible error.
 </details>
 
 ---
 
 <div align="center">
 
-**Licença MIT · Faça o que quiser · [Issues](https://github.com/lfsp-git/statusline-control/issues) · [PRs](https://github.com/lfsp-git/statusline-control/pulls) são bem-vindos**
+**MIT License · Do whatever you want · [Issues](https://github.com/lfsp-git/statusline-control/issues) · [PRs](https://github.com/lfsp-git/statusline-control/pulls) welcome**
 
-<sub>Feito com ☕ e tempo demais olhando para a statusline.</sub>
+<sub>Made with ☕ and way too much time staring at the statusline.</sub>
 
 ![footer](https://capsule-render.vercel.app/api?type=waving&color=0:dc143c,50:4a0000,100:0a0a0f&height=120&section=footer)
 
